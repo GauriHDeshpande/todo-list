@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Footer } from './MyComponents/Footer';//It is passed in curly brackets because it is not exported by default through its function.
 import Header from './MyComponents/Header';
 import Todos from './MyComponents/Todos';
+import AddTodo from './MyComponents/AddTodo';
 
 function App() {
   const onDelete = (todo) => {
@@ -10,6 +11,17 @@ function App() {
     setTodos(todos.filter((e) => {
       return e !== todo;
     }))
+  }
+  const addTodo = (title,desc) =>{
+    console.log("I am adding this todo", title, desc);
+    let sno = todos[todos.length - 1].sno + 1;
+    const myTodo = {
+      sno : sno,
+      title : title,
+      desc : desc
+    }
+    setTodos([...todos, myTodo]);
+    console.log(myTodo);
   }
   const [todos, setTodos] = useState([
     {
@@ -38,9 +50,11 @@ function App() {
       desc: "This is the description 5"
     }
   ]);
-  return (
+  
+    return (
     <>
       <Header title="My-Todo's-List" searchBar={true} />
+      <AddTodo addTodo={addTodo}/>
       <Todos todos={todos} onDelete={onDelete} />
       <Footer />
     </>

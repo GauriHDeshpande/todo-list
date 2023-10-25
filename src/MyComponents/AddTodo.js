@@ -1,24 +1,32 @@
-import React from 'react'
+import React, {useState} from 'react'
 
-const AddTodo = () => {
+const AddTodo = ({addTodo}) => {
+    const [title, setTitle] = useState("");
+    const [desc, setDesc] = useState("");
+    const submit = (e) => {
+        e.preventDefault();
+        if(!title || !desc){
+            alert("Title or description can not be blank.")
+        }
+        addTodo(title, desc)
+    }
     return (
         <>
-            <form>
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" />
-                </div>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+            <div className='container my-3'>
+                <form onSubmit={submit}>
+                    <h3>Add a Todo</h3>
+                    <div className="mb-3">
+                        <label htmlFor="title" className="form-label">Todo Title</label>
+                        <input type="text" className="form-control" onChange={(e) =>setTitle(e.target.value)} id="title" aria-describedby="emailHelp" value={title}/>
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="desc" className="form-label">Todo Description</label>
+                        <input type="text" className="form-control" onChange={(e) => setDesc(e.target.value)} id="desc" value={desc}/>
+                    </div>
+                    <button type="submit" className="btn btn-success my-3 mx-2">Add Todo</button>
+                    <button type="cancel" className="btn btn-danger my-3 mx-3">Cancel</button>
+                </form>
+            </div>
         </>
     )
 }
