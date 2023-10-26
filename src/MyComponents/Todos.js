@@ -7,6 +7,7 @@ export default function Todos(props) {
     margin: "50px auto"
   }
   return (
+    <>
       <div className='container my-3' style={myStyle}>
         <h3 className='my-3'>Todos List</h3>
         {props.todos.length === 0 ? "No todos to display" :
@@ -19,5 +20,6 @@ export default function Todos(props) {
           })
         }
       </div>
+    </>
   );
 }

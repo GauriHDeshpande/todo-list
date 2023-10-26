@@ -6,3 +6,6 @@
 
 # useState
 - it is used for deleting the todo items of todo-list.
+
+# Note
+- Uptil now I have created a basic TODO-Application wit feature and now I am going to sharpen it...
