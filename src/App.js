@@ -44,7 +44,7 @@ function App() {
     console.log(myTodo);
   }
 
-  const [todos, setTodos] = useState([initTodo]);
+  const [todos, setTodos] = useState(initTodo);
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
@@ -55,18 +55,14 @@ function App() {
       <Router>
         <Header title="My-Todo's-List" searchBar={true} />
         <Routes>
-          <Route extract path='/' render={() => {
-            return (
-              <>
-                <AddTodo addTodo={addTodo} />
-                <Todos todos={todos} onDelete={onDelete} />
-              </>
-            )
-          }}>
-          </Route>
-          <Route extract path='/about'>
-            <About />
-          </Route>
+          <Route path='/' element={
+            <>
+              <AddTodo addTodo={addTodo} />
+              <Todos todos={todos} onDelete={onDelete} />
+            </>
+          } />
+
+          <Route exact path='/about' element={<About />} />
         </Routes>
         <Footer />
       </Router>
