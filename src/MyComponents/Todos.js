@@ -13,9 +13,7 @@ export default function Todos(props) {
         {props.todos.length === 0 ? "No todos to display" :
           props.todos.map((todo) => {
             return (
-              <>
-                <TodoItem todo={todo} key={todo.sno} onDelete={props.onDelete} /><hr />
-              </>
+              <TodoItem todo={todo} key={todo.sno} onDelete={props.onDelete} />
             )
           })
         }
